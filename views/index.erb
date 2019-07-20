@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rubian - monitoring tool</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div class="container">
+<h1>Rubian - a monitoring tool by <a href="https://github.com/jeicoo">jeicoo</a></h1>
+<div class="row">
+  <div class="col s12 l6">
+    <h2>Most viewed questions</h2>
+    <div class="collection">
+      <% @top_questions.each do |question| %>
+        <a href='<%= question[:link] %>' target="_blank" class="collection-item">
+          <span class="new badge blue" data-badge-caption=""><%= question[:view_count] %></span>
+          <%= question[:title] %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <div class="col s12 l6">
+    <h2>Processes</h2>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>PID</th>
+          <th>CPU Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ps.each do |p| %>
+          <tr>
+            <td><%= p[:pname] %></td>
+            <td><%= p[:pid] %></td>
+            <td><%= p[:cpu] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
